@@ -97,9 +97,99 @@ internal class Program
         //    Console.WriteLine($"Employee Name:{employee.Id} :deppartment {employee.Name}");
         //}
         #endregion
+        #region join (inter join )
+        //var result = from D in dbCoontext.Employees
+        //             join E in dbCoontext.Departments
+        //             on D.DepartmentDeptId equals E.DepartmentId
+        //             select new
+        //             {
+        //                 EmpId = E.DepartmentId,
+        //                 name = E.Name,
+        //                 deptId = D.Id,
+        //                 deptName = D.Name,
+        //             };
+        ////Fluent Syntax
+        //result = dbCoontext.Employees.Join(dbCoontext.Departments,
+        //    D => D.DepartmentDeptId,
+        //    E => E.DepartmentId,
+        //    (Department, Employee) => new
+        //    {
+        //        EmpId = Employee.DepartmentId,
+        //        name = Employee.Name,
+        //        deptId = Department.Id,
+        //        deptName = Department.Name,
+        //    });
+        //foreach (var item in result) { 
+        //Console.WriteLine(item);
+        //}
         #endregion
+        #region (Group Join)
+        //Fluent Syntax
+        //var result = dbCoontext.Departments.GroupJoin(dbCoontext.Employees,
+        //    D => D.DepartmentId,
+        //    E => E.DepartmentDeptId,
+        //    (Department, Employee) => new
+        //    {
+        //        Department,
+        //        Employee
+        //    });
 
+        //var result = from D in dbCoontext.Departments
+        //             join E in dbCoontext.Employees
+        //             on D.DepartmentId equals E.DepartmentDeptId into emp
+        //             select new
+        //             {
+        //                 dept=D,
+        //                 employess=emp
+        //             };
+        //foreach (var item in result)
+        //{
+        //    Console.WriteLine(item.dept.DepartmentId);
+        //    foreach (var emp in item.employess)
+        //    {
+        //        Console.WriteLine(emp.Name);
+        //    }
+        //}
+        #endregion
+        #region outer join 
+        //var result = dbCoontext.Employees
+        //    .GroupJoin(dbCoontext.Departments,
+        //e => e.DepartmentDeptId,   
+        //d => d.DepartmentId,             
+        //(employee, departments) => new { employee, departments })
+        //     .SelectMany(
+        //ed => ed.departments.DefaultIfEmpty(),  
+        //(ed, department) => new
+        //{
+        //    EmpId = ed.employee.Id,
+        //    Name = ed.employee.Name,
+        //    DeptId = department != null ? department.DepartmentId : (int?)null,  
+        //    DeptName = department != null ? department.Name : "No Department"
+        //});
 
+        //foreach (var item in result)
+        //{
+        //    Console.WriteLine($"EmpId: {item.EmpId}, Name: {item.Name}, DeptId: {item.DeptId}, DeptName: {item.DeptName}");
+        //}
+
+        #endregion
+        #region cross join 
+        //var result = from E in dbCoontext.Employees
+        //             from D in dbCoontext.Departments 
+                    
+        //             select new
+        //             {
+        //                emp= E,
+        //                Department =D
+        //             };
+        //foreach (var item in result)
+        //{
+        //    Console.WriteLine(item.emp.Name);
+           
+        //
+        //}
+        #endregion
+        #endregion
 
     }
 }
